@@ -48,5 +48,19 @@ public class BookKeeperTest {
         Invoice result = bk.issuance(invoiceRequest, taxPolicy);
         assertThat(result.getItems().size(), equalTo(1));
     }
+    @Test
+    public void givenEmptyInvoiceRequest_whenIssuance_thenInvoiceWithNoItems(){
+        
+        BookKeeper bk = new BookKeeper();
+        Invoice result = bk.issuance(invoiceRequest, taxPolicy);
+        assertThat(result.getItems().size(), equalTo(0));
+        
+    }
+    @Test
+    public void givenInvoiceRequest_whenIssuance_theInvoiceShouldHaveClientInfo(){
+        BookKeeper bk = new BookKeeper();
+        Invoice result = bk.issuance(invoiceRequest, taxPolicy);
+        assertThat(result.getClient(), equalTo(client));
+    }
     
 }
